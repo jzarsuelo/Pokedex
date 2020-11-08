@@ -21,8 +21,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: PokemonCollectionAdapter
     private val viewModel: HomeViewModel by viewModels()
 
-    @Inject
-    lateinit var imageLoader: ImageLoader
+    @Inject lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
