@@ -31,7 +31,8 @@ object Dependency {
         Library.retrofitConverterMoshi,
         Library.moshi,
         Library.moshiKotlinAdapter,
-        Library.coil
+        Library.coil,
+        Library.coilSvgDecoder
     )
 
     val compilers = listOf(
@@ -99,5 +100,6 @@ object Dependency {
 
         // image loader
         const val coil = "io.coil-kt:coil:${Version.Library.coil}"
+        const val coilSvgDecoder = "io.coil-kt:coil-svg:${Version.Library.coil}"
     }
 }

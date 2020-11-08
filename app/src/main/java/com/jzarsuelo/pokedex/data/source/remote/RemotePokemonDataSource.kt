@@ -14,6 +14,7 @@ class RemotePokemonDataSource @Inject constructor(
     override fun loadPokemon(): Flow<List<Pokemon>> = flow {
         val data = withTimeout(10_000) {
             pokemonApiService.getPokemonInKantoRegion().results
+                .sortedBy { it.id }
         }
         emit(data)
     }

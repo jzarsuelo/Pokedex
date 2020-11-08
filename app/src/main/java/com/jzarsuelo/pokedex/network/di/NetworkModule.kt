@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://pokeapi.co/api/v2/"
+    const val BASE_URL = "https://pokeapi.co/api/v2/"
 
     @Provides
     fun provideMoshi(): Moshi {

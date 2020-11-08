@@ -7,17 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import coil.ImageLoader
 import com.jzarsuelo.pokedex.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private lateinit var adapter: PokemonCollectionAdapter
     private val viewModel: HomeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +35,24 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadPokemon()
 
-        viewModel.pokemonListLiveData.observe(viewLifecycleOwner, Observer {
-            // TODO consume data here
-        })
+        swipe_to_refresh.setOnRefreshListener { onSwipeToRefresh() }
+        pokemon_recyler_view.layoutManager = LinearLayoutManager(this.context)
+
+        adapter = PokemonCollectionAdapter(imageLoader)
+        pokemon_recyler_view.adapter = adapter
+
+        viewModel.apply {
+            pokemonListLiveData.observe(viewLifecycleOwner, Observer { pokemonList ->
+                adapter.refreshData(pokemonList)
+            })
+            isWorkOnGoing.observe(viewLifecycleOwner, Observer { isWorkOnGoing ->
+                swipe_to_refresh.isRefreshing = isWorkOnGoing
+            })
+        }
+
+    }
+
+    private fun onSwipeToRefresh() {
+        viewModel.loadPokemon()
     }
 }

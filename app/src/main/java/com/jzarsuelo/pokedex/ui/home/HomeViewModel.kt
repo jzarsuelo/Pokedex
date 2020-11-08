@@ -20,7 +20,7 @@ class HomeViewModel @ViewModelInject constructor(
             pokemonRepository.loadPokemon()
         }
         .onStart { _isWorkOnGoing.value = true }
-        .onCompletion { _isWorkOnGoing.value = false }
+        .onEach { _isWorkOnGoing.value = false }
         .catch { t ->
             _isWorkOnGoing.value = false
             _errorMessage.value = t.message
