@@ -12,6 +12,7 @@ import coil.ImageLoader
 import coil.load
 import com.jzarsuelo.pokedex.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
 import kotlinx.android.synthetic.main.item_pokemon.*
 import javax.inject.Inject
 
@@ -40,6 +41,9 @@ class PokemonDetailFragment : Fragment() {
                 name_text_view.text = pokemonDetails.formattedName
                 id_text_view.text = pokemonDetails.formattedId
                 pokemon_image_view.load(pokemonDetails.imageSource, imageLoader)
+            })
+            isWorkOnGoing.observe(viewLifecycleOwner, Observer { isWorkOnGoing ->
+                swipe_to_refresh.isRefreshing = isWorkOnGoing
             })
         }
     }
