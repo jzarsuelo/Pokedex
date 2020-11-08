@@ -7,5 +7,5 @@ data class PokemonSpeciesDetailResponse(
     @Json(name =  "capture_rate") val captureRate: Int,
     @Json(name =  "flavor_text_entries") val descriptions: List<PokemonDescription>
 ) {
-    val description: String = descriptions[0].description
+    val description: String = descriptions[0].description.replace("\n", " ")
 }

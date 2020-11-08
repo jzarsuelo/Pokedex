@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -43,10 +46,34 @@ class PokemonDetailFragment : Fragment() {
                 pokemon_image_view.load(pokemonDetails.imageSource, imageLoader) {
                     placeholder(R.drawable.pokeball)
                 }
+                description.text = pokemonDetails.description
+                height_chip.text = getString(R.string.height, pokemonDetails.height)
+                weight_chip.text = getString(R.string.weight, pokemonDetails.weight)
+                capture_rate_chip.text = getString(R.string.capture_rate, pokemonDetails.captureRate)
+                happiness_chip.text = getString(R.string.happiness, pokemonDetails.baseHappiness)
+
+                pokemonDetails.stats.forEach { stat ->
+                    when (stat.name) {
+                        "hp" -> { loadStatData(hp_label, hp, stat.value, R.string.hp) }
+                        "attack" -> { loadStatData(attack_label, attack, stat.value, R.string.attack) }
+                        "defense" -> { loadStatData(defense_label, defense, stat.value, R.string.defense) }
+                        "speed" -> { loadStatData(speed_label, speed, stat.value, R.string.speed) }
+                    }
+                }
             })
             isWorkOnGoing.observe(viewLifecycleOwner, Observer { isWorkOnGoing ->
                 swipe_to_refresh.isRefreshing = isWorkOnGoing
             })
         }
+    }
+
+    private fun loadStatData(
+        label: TextView,
+        progressBar: ProgressBar,
+        statValue: Int,
+        @StringRes stringResource: Int
+    ) {
+        label.text = getString(stringResource, statValue)
+        progressBar.progress = statValue
     }
 }

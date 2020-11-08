@@ -3,5 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pokemon_image">Pokemon image</string>
+    <string name="details">Details</string>
     <string name="stats">Stats</string>
+    <string name="height">Height: %1$.1f m</string>
+    <string name="weight">Weight: %1$.1f kg</string>
+    <string name="happiness">Happiness: %1$d</string>
+    <string name="capture_rate">Capture rate: %1$d</string>
+    <string name="hp">HP: %1$d</string>
+    <string name="attack">Attack %1$d</string>
+    <string name="defense">Defense %1$d</string>
+    <string name="speed">Speed %1$d</string>
 </resources>
