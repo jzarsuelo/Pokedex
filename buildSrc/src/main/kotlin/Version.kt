@@ -9,6 +9,7 @@ object Version {
     object Android {
         const val constraintLayout = "2.0.4"
         const val ktxCore = "1.3.2"
+        const val ktxLifeCycle = "2.2.0"
         const val appCompat = "1.2.0"
         const val nav = "2.3.1"
         const val coordinatorLayout = "1.1.0"

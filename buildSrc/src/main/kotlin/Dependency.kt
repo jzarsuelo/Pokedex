@@ -11,6 +11,7 @@ object Dependency {
 
     val android = listOf(
         Android.ktxCore,
+        Android.ktxLifecyleLiveData,
         Android.appCompat,
         Android.constraintLayout,
         Android.navFragment,
@@ -50,6 +51,7 @@ object Dependency {
 
     private object Android {
         const val ktxCore = "androidx.core:core-ktx:${Version.Android.ktxCore}"
+        const val ktxLifecyleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.Android.ktxLifeCycle}"
         const val appCompat = "androidx.appcompat:appcompat:${Version.Android.appCompat}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.Android.constraintLayout}"
 
