@@ -11,6 +11,7 @@ object Version {
         const val ktxCore = "1.3.2"
         const val appCompat = "1.2.0"
         const val nav = "2.3.1"
+        const val coordinatorLayout = "1.1.0"
     }
 
     object Test {

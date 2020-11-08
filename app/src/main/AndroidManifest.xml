@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.jzarsuelo.pokedex.App"
+        android:name="com.jzarsuelo.pokedex.PokedexApp"
         android:fullBackupContent="false">
-        <activity android:name="com.jzarsuelo.pokedex.MainActivity">
+        <activity android:name="com.jzarsuelo.pokedex.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

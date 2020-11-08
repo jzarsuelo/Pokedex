@@ -15,7 +15,8 @@ object Dependency {
         Android.constraintLayout,
         Android.navFragment,
         Android.navUi,
-        Android.navRuntime
+        Android.navRuntime,
+        Android.coordinatorLayout
     )
 
     val libraries = listOf(
@@ -57,6 +58,8 @@ object Dependency {
         const val navRuntime = "androidx.navigation:navigation-runtime-ktx:${Version.Android.nav}"
         // not used for now
         const val navDynamicFeatures = "androidx.navigation:navigation-dynamic-features-fragment:${Version.Android.nav}"
+
+        const val coordinatorLayout = "androidx.coordinatorlayout:coordinatorlayout:${Version.Android.coordinatorLayout}"
     }
 
     private object Test {
