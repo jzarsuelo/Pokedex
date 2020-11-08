@@ -13,4 +13,5 @@
     <string name="attack">Attack %1$d</string>
     <string name="defense">Defense %1$d</string>
     <string name="speed">Speed %1$d</string>
+    <string name="refresh">Refresh</string>
 </resources>
