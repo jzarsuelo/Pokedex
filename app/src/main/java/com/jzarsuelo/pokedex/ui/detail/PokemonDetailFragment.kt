@@ -40,7 +40,9 @@ class PokemonDetailFragment : Fragment() {
             pokemonDetailsLiveData.observe(viewLifecycleOwner, Observer { pokemonDetails ->
                 name_text_view.text = pokemonDetails.formattedName
                 id_text_view.text = pokemonDetails.formattedId
-                pokemon_image_view.load(pokemonDetails.imageSource, imageLoader)
+                pokemon_image_view.load(pokemonDetails.imageSource, imageLoader) {
+                    placeholder(R.drawable.pokeball)
+                }
             })
             isWorkOnGoing.observe(viewLifecycleOwner, Observer { isWorkOnGoing ->
                 swipe_to_refresh.isRefreshing = isWorkOnGoing

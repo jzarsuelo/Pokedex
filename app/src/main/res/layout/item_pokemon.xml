@@ -18,9 +18,10 @@
             android:id="@+id/image_card_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_spacing"
             app:cardCornerRadius="50dp"
             app:strokeWidth="1dp"
-            app:strokeColor="#d3d3d3"
+            app:strokeColor="@color/light_gray"
             card_view:cardPreventCornerOverlap="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,13 +30,17 @@
                 android:id="@+id/pokemon_image_view"
                 android:contentDescription="@string/pokemon_image"
                 android:layout_width="65dp"
-                android:layout_height="65dp"/>
+                android:layout_height="65dp"
+                android:src="@drawable/pokeball"/>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_spacing"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@+id/image_card_view"
             app:layout_constraintLeft_toRightOf="@+id/image_card_view"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +50,8 @@
             android:id="@+id/id_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_spacing"
+            android:textSize="16sp"
             app:layout_constraintTop_toTopOf="@+id/image_card_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

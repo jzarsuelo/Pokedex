@@ -4,10 +4,10 @@ import com.jzarsuelo.pokedex.data.Stat
 import com.squareup.moshi.Json
 
 data class RawStat(
-    val base_stat: Int,
+    @Json(name =  "base_stat") val baseStat: Int,
     val stat: StatName
 ) {
-    fun toStat(): Stat = Stat(name = stat.name, value = base_stat)
+    fun toStat(): Stat = Stat(name = stat.name, value = baseStat)
 }
 
 data class StatName(
