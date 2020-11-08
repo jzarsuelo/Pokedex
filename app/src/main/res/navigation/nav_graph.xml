@@ -9,5 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.jzarsuelo.pokedex.ui.home.HomeFragment"
         android:label="fragment_pokemon_collection"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_pokemonDetailFragment"
+            app:destination="@id/pokemonDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="pokemonId"
+                app:argType="integer"/>
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailFragment"
+        android:name="com.jzarsuelo.pokedex.ui.detail.PokemonDetailFragment"
+        android:label="fragment_pokemon_information"
+        tools:layout="@layout/fragment_pokemon_detail" >
+        <argument
+            android:name="pokemonId"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

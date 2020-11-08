@@ -7,9 +7,14 @@ import coil.load
 import com.jzarsuelo.pokedex.data.Pokemon
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 
-class PokemonItemViewHolder(view: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(view) {
+class PokemonItemViewHolder(
+    view: View,
+    private val imageLoader: ImageLoader,
+    private val navigateToDetailsAction: (pokemonId: Int) -> Unit
+) : RecyclerView.ViewHolder(view) {
     fun bind(pokemon: Pokemon) {
         itemView.apply {
+            setOnClickListener { navigateToDetailsAction(pokemon.id) }
             name_text_view.text = pokemon.formattedName
             id_text_view.text = pokemon.formattedId
 
