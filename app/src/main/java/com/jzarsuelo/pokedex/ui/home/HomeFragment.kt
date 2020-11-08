@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.jzarsuelo.pokedex.R
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -33,7 +32,7 @@ class HomeFragment : Fragment() {
         viewModel.loadPokemon()
 
         viewModel.pokemonListLiveData.observe(viewLifecycleOwner, Observer {
-            Timber.d("asdf")
+            // TODO consume data here
         })
     }
 }
