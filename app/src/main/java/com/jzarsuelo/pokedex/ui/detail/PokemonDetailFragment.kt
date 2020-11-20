@@ -40,6 +40,7 @@ class PokemonDetailFragment : BaseFragment() {
 
         viewModel.apply {
             loadPokemonDetails(args.pokemonId)
+            swipe_to_refresh.setOnRefreshListener { loadPokemonDetails(args.pokemonId) }
             pokemonDetailsLiveData.observe(viewLifecycleOwner, Observer { pokemonDetails ->
                 name_text_view.text = pokemonDetails.formattedName
                 id_text_view.text = pokemonDetails.formattedId
