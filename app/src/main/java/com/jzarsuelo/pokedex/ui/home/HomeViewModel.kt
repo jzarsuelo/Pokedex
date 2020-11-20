@@ -7,6 +7,7 @@ import com.jzarsuelo.pokedex.data.Pokemon
 import com.jzarsuelo.pokedex.data.source.PokemonRepository
 import com.jzarsuelo.pokedex.di.scope.IoDispactcher
 import com.jzarsuelo.pokedex.ui.BaseViewModel
+import com.jzarsuelo.pokedex.util.Message.ErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
@@ -20,14 +21,22 @@ class HomeViewModel @ViewModelInject constructor(
 
     val pokemonListLiveData: LiveData<List<Pokemon>> = pokemonListChannel.asFlow()
         .flatMapLatest {
-            pokemonRepository.loadPokemon()
+            clearError()
+            pokemonRepository.loadPokemon().catch { t ->
+                showError(ErrorMessage(t.message!!))
+                emit(listOf())
+            }
         }
         .flowOn(ioDispactcher)
-        .onStart { _isWorkOnGoing.value = true }
-        .onEach { _isWorkOnGoing.value = false }
-        .catch { t ->
+        .onStart {
+            _isWorkOnGoing.value = true
+        }
+        .onEach {
             _isWorkOnGoing.value = false
-            _errorMessage.value = t.message
+        }
+        .catch { t ->
+            showError(ErrorMessage(t.message!!))
+            emit(listOf())
         }
         .asLiveData()
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.jzarsuelo.pokedex.data.PokemonDetails
 import com.jzarsuelo.pokedex.data.source.PokemonRepository
 import com.jzarsuelo.pokedex.ui.BaseViewModel
+import com.jzarsuelo.pokedex.util.Message.ErrorMessage
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
 
@@ -16,13 +17,18 @@ class PokemonDetailViewModel @ViewModelInject constructor(
     private val pokemonIdChannel = ConflatedBroadcastChannel<Int>()
 
     val pokemonDetailsLiveData: LiveData<PokemonDetails> = pokemonIdChannel.asFlow()
-        .flatMapLatest { pokemonId -> pokemonRepository.getPokemonDetails(pokemonId) }
-        .onStart { _isWorkOnGoing.value = true }
-        .onEach { _isWorkOnGoing.value = false }
-        .catch { t ->
-            _isWorkOnGoing.value = false
-            _errorMessage.value = t.message
+        .flatMapLatest { pokemonId ->
+            pokemonRepository.getPokemonDetails(pokemonId)
+                    .catch { t -> showError(ErrorMessage(t.message!!)) }
         }
+        .onStart {
+            clearError()
+            _isWorkOnGoing.value = true
+        }
+        .onEach {
+            _isWorkOnGoing.value = false
+        }
+        .catch { t -> showError(ErrorMessage(t.message!!)) }
         .asLiveData()
 
     fun loadPokemonDetails(pokemonId: Int) {
